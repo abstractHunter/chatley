@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <h1>Chat app home page</h1>
+
+    {% if user.is_authenticated %}
+
+        <a href="{% url "newroom" %}">Create a room</a>
+
+        {% for room in rooms %}
+            <div>
+                <h3>{{ room.name }}</h3>
+                <a href="{{ room.get_absolute_url }}">Access room</a>
+            </div>
+        {% endfor %}
+    
+    {% else %}
+            
+        <h3>Project presentation</h3>
+    
+    {% endif %}
+
+
+{% endblock content %}

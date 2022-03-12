@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>room page</h1>
+
+    {% if user.is_authenticated %}
+
+        <div>
+            <h3>{{ room.name }}</h3>
+            <p>{{ room.description }}</p>
+        </div>
+
+        <div>
+            {% for message in messages %}
+                <h4>{{ message.author }}</h4>
+                <p>{{ message.content }}</p>
+                <blockquote>{{ message.created_at }}</blockquote>
+            {% endfor %}
+        </div>
+    
+    {% endif %}
+
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Create a new room</h1>
+    <form method="POST">
+
+        <p>
+            <label for="room_name">Enter Room name</label>
+            <input type="text" id="room_name">
+        </p>
+        <p>
+            <label for="room_description">Enter Room description</label>
+            <textarea name="room_description" id="room_description" cols="30" rows="10"></textarea>
+        </p>
+        <button type="submit">Create a room</button>
+    </form>
+
+{% endblock content %}
