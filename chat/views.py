@@ -1,5 +1,6 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from chat.models import Room, Message
+from chat.forms import NewRoomForm
 
 # Create your views here.
 
@@ -16,4 +17,14 @@ def room(request, slug):
 
 
 def new_room(request):
-    return render(request, "chat/new_room.html")
+    if request.method == 'POST':
+        form = NewRoomForm(request.POST)
+
+        if form.is_valid():
+            room = form.save()
+
+            return redirect("room", room.slug)
+    else:
+        form = NewRoomForm()
+
+    return render(request, "chat/new_room.html", context={"form" : form})
