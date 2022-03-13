@@ -4,17 +4,36 @@
 
     <h1>room page</h1>
 
+    <hr>
     <div>
-        <h3>{{ room.name }}</h3>
+        <h2>{{ room.name }}</h2>
         <p>{{ room.description }}</p>
     </div>
 
+    <hr>
     <div>
-        {% for message in messages %}
-            <h4>{{ message.author }}</h4>
-            <p>{{ message.content }}</p>
-            <blockquote>{{ message.created_at }}</blockquote>
-        {% endfor %}
+        <h4>Messages</h4>
+        {% if not room.messages.all %}
+            <p>No messages yet</p>
+
+        {% else %}
+            {% for message in room.messages.all %}
+                <h4>
+                    {{ message.author }}
+                    (<i>{{ message.created_at }}</i>)
+                </h4>
+                <p>{{ message.content }}</p>
+            {% endfor %}
+        
+        {% endif %}
+
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Send Message</button>
+
+        </form>
+
     </div>
     
 {% endblock content %}
