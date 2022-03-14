@@ -2,17 +2,16 @@
 
 {% block content %}
 
-    <h1>room page</h1>
 
-    <hr>
     <div>
-        <h2>{{ room.name }}</h2>
+        <h1>{{ room.name }}</h1>
         <p>{{ room.description }}</p>
     </div>
 
     <hr>
+    <br><br><br>
+
     <div>
-        <h4>Messages</h4>
         {% if not room.messages.all %}
             <p>No messages yet</p>
 
@@ -23,17 +22,22 @@
                     (<i>{{ message.created_at }}</i>)
                 </h4>
                 <p>{{ message.content }}</p>
+                <hr>
             {% endfor %}
         
         {% endif %}
 
         <form action="" method="post">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ form }}
             <button type="submit">Send Message</button>
 
         </form>
 
     </div>
+
+    <script>
+        window.scrollTo(0,document.body.scrollHeight);
+    </script>
     
 {% endblock content %}
