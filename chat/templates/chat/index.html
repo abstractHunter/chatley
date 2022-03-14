@@ -7,15 +7,23 @@
 
     {% if user.is_authenticated %}
 
-        <a href="{% url "newroom" %}">Create a room</a>
+        <button onclick="window.location.href='{% url "newroom" %}';">
+            Create a room
+        </button>
 
+        <hr>
+        <br><br>
         {% for room in rooms %}
-            <div>
+            <br>
+            <div style="height: 60px; display: flex; justify-content: space-between;">
                 <h3>{{ room.name }}</h3>
-                <a href="{{ room.get_absolute_url }}">Access room</a>
+                <button onclick="window.location.href='{{room.get_absolute_url}}';">
+                    Access room
+                </button>
             </div>
+            <hr>
         {% endfor %}
-    
+        <br><br>
     {% else %}
             
         <h3>Project presentation</h3>
