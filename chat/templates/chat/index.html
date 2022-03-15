@@ -5,38 +5,32 @@
 
     <h1>Chat app home page</h1>
 
-    {% if user.is_authenticated %}
 
-        <button onclick="window.location.href='{% url "newroom" %}';">
-            Create a room
-        </button>
+    <button onclick="window.location.href='{% url "newroom" %}';">
+        Create a room
+    </button>
 
-        <hr>
-        <br><br>
-        {% if rooms %}
-            {% for room in rooms %}
-                <br>
-                <div style="height: 60px; display: flex; justify-content: space-between;">
-                    <h3>{{ room.name }}</h3>
-                    <button onclick="window.location.href='{{room.get_absolute_url}}';">
-                        Access room
-                    </button>
-                </div>
-                <hr>
-            {% endfor %}
+    <hr>
+    <br><br>
+    {% if rooms %}
+        {% for room in rooms %}
+            <br>
+            <div style="height: 60px; display: flex; justify-content: space-between;">
+                <h3>{{ room.name }}</h3>
+                <button onclick="window.location.href='{{room.get_absolute_url}}';">
+                    Access room
+                </button>
+            </div>
+            <hr>
+        {% endfor %}
         
-        {% else %}
+    {% else %}
             <br>
                 <h3>No rooms yet, create one</h3>
             <hr>
         
-        {% endif %}
-        <br><br>
-    {% else %}
-            
-        <h3>Project presentation</h3>
-    
     {% endif %}
+        <br><br>
 
 
 {% endblock content %}
