@@ -13,16 +13,24 @@
 
         <hr>
         <br><br>
-        {% for room in rooms %}
+        {% if room %}
+            {% for room in rooms %}
+                <br>
+                <div style="height: 60px; display: flex; justify-content: space-between;">
+                    <h3>{{ room.name }}</h3>
+                    <button onclick="window.location.href='{{room.get_absolute_url}}';">
+                        Access room
+                    </button>
+                </div>
+                <hr>
+            {% endfor %}
+        
+        {% else %}
             <br>
-            <div style="height: 60px; display: flex; justify-content: space-between;">
-                <h3>{{ room.name }}</h3>
-                <button onclick="window.location.href='{{room.get_absolute_url}}';">
-                    Access room
-                </button>
-            </div>
+                <h3>No rooms yet, create one</h3>
             <hr>
-        {% endfor %}
+        
+        {% endif %}
         <br><br>
     {% else %}
             
