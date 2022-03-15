@@ -5,14 +5,14 @@
 
     <h1>Chat app home page</h1>
 
-    {% if user.is_authenticated %}
 
-        <button onclick="window.location.href='{% url "newroom" %}';">
-            Create a room
-        </button>
+    <button onclick="window.location.href='{% url "newroom" %}';">
+        Create a room
+    </button>
 
-        <hr>
-        <br><br>
+    <hr>
+    <br><br>
+    {% if rooms %}
         {% for room in rooms %}
             <br>
             <div style="height: 60px; display: flex; justify-content: space-between;">
@@ -23,12 +23,14 @@
             </div>
             <hr>
         {% endfor %}
-        <br><br>
+        
     {% else %}
-            
-        <h3>Project presentation</h3>
-    
+            <br>
+                <h3>No rooms yet, create one</h3>
+            <hr>
+        
     {% endif %}
+    <br><br>
 
 
 {% endblock content %}
