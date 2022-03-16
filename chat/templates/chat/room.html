@@ -21,7 +21,7 @@
                     {{ message.author }}
                     (<i>{{ message.created_at }}</i>)
                 </h4>
-                <p>{{ message.content }}</p>
+                <p>{{ message.content|urlize }}</p>
                 <hr>
             {% endfor %}
         
