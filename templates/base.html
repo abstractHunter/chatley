@@ -7,33 +7,55 @@
     <title>The Ultimate Chat App</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-    <a href="{% url "index" %}">
-        <h2>the chat app, the ultimate one</h2>
-    </a>
+    <div style="
+        position: fixed;
+        z-index: 10;
+        top:0;
+        width: 100%;
+        padding-bottom: 50px;
+        background-color: inherit;"
+    >
 
-    {% comment %} 
-        var user is available in all the files of the project as the actual connected user
-    {% endcomment %}
+        <a href="{% url "index" %}">
+            <h2>the chat app, the ultimate one</h2>
+        </a>
+    
+        {% comment %} 
+            var user is available in all the files of the project as the actual connected user
+        {% endcomment %}
+    
+        {% if user.is_authenticated %}
+            {{ user.username }}
+            <span>|</span>
+            <a href="{% url "signout" %}">Log out</a>
+        
+        {% else %}
+            <a href="{% url 'signup' %}">Log Up</a>
+            <span>|</span>
+            <a href="{% url 'signin' %}">Log In</a>
+        
+        {% endif %}
 
-    {% if user.is_authenticated %}
-        {{ user.username }}
-        <span>|</span>
-        <a href="{% url "signout" %}">Log out</a>
-    
-    {% else %}
-        <a href="{% url 'signup' %}">Log Up</a>
-        <span>|</span>
-        <a href="{% url 'signin' %}">Log In</a>
-    
-    {% endif %}
+    </div>
 
     <hr>
     <br>
 
-    {% block content %}
-    
-    {% endblock content %}
+    <div style="
+        margin-top: 100px;
+    ">
+        {% block content %}
+        
+        {% endblock content %}
+    </div>
+
+    <div>
+        {% block scripts %}
+        {% endblock scripts %}
+    </div>
+
 </body>
 </html>

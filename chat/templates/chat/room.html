@@ -11,7 +11,7 @@
     <hr>
     <br><br><br>
 
-    <div>
+    <div id="messages-display">
         {% if not room.messages.all %}
             <p>No messages yet</p>
 
@@ -27,17 +27,27 @@
         
         {% endif %}
 
-        <form action="" method="post">
-            {% csrf_token %}
-            {{ form }}
-            <button type="submit">Send Message</button>
-
-        </form>
-
     </div>
 
-    <script>
-        window.scrollTo(0,document.body.scrollHeight);
-    </script>
-    
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Send Message</button>
+    </form>
+
 {% endblock content %}
+
+{% block scripts %}
+
+    <script>
+        // on page load, scroll to bottom where there are the latest messages
+        window.scrollTo(0,document.body.scrollHeight);
+    
+        // update messages div without reloading the whole page 
+        function updateDiv() { 
+            $("#messages-display").load(location.href + " #messages-display");
+        }
+        setInterval(updateDiv, 2500);
+    </script>
+
+{% endblock scripts %}
