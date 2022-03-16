@@ -11,6 +11,10 @@ def index(request):
     return render(request, "chat/index.html", context={"rooms" : rooms})
 
 
+def handler404(request, exception=None):
+    return render(request, 'chat/404.html')
+
+
 @login_required(login_url="signin")
 def room(request, slug):
     room = get_object_or_404(Room, slug=slug)
