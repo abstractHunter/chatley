@@ -5,20 +5,26 @@
 
     <h1>Sign up</h1>
 
+    {% if error %}
+        <div>{{error}}</div>
+        <br><br>
+    {% endif %}
+
     <form method="POST">
         {% csrf_token %}
+        <label for="username">Your Username</label>
+        <input type="text" name="username" value={{old_username}}>
+        <br>
 
-        <p>
-            <label for="username">Your username</label>
-            <input type="text" name="username">
-        </p>
-        <p>
-            <label for="password">Your password</label>
-            <input type="password" name="password">
-        </p>
+        <label for="passord">Your Password</label>
+        <input type="password" name="password">
+        <br>
+        
+        <label for="password_confirm">Confirm Your Password</label>
+        <input type="password" name="password_confirm">
+        <br>
 
         <button type="submit">Sign Up</button>
-
     </form>
 
 {% endblock content %}

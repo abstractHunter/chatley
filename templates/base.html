@@ -14,23 +14,26 @@
         position: fixed;
         z-index: 10;
         top:0;
-        width: 100%;
+        width: min(100%, 800px);
         padding-bottom: 50px;
         background-color: inherit;"
     >
 
         <a href="{% url "index" %}">
-            <h2>the chat app, the ultimate one</h2>
+            <h1>chatley</h1>
         </a>
     
-        {% comment %} 
-            var user is available in all the files of the project as the actual connected user
-        {% endcomment %}
-    
         {% if user.is_authenticated %}
-            {{ user.username }}
-            <span>|</span>
-            <a href="{% url "signout" %}">Log out</a>
+            <div style="display: flex; justify-content: space-between;">
+                <div>
+                    {{ user.username }}
+                    <span>|</span>
+                    <a href="{% url "signout" %}">Log out</a>
+                </div>
+                <button onclick="window.location.href='{% url "newroom" %}';">
+                    Create a room
+                </button>
+            </div>
         
         {% else %}
             <a href="{% url 'signup' %}">Log Up</a>
@@ -40,6 +43,7 @@
         {% endif %}
 
     </div>
+    <br>
 
     <hr>
     <br>
@@ -51,6 +55,7 @@
         
         {% endblock content %}
     </div>
+    <br>
 
     <div>
         {% block scripts %}
